@@ -11,24 +11,24 @@ RESIZE = 8
 RAID_LIST = []
 hddList = []
 
-HDD1 = HDD('HDD01', 2)
-HDD2 = HDD('HDD02', 2)
-# HDD3 = HDD('HDD03', 2)
-# HDD4 = HDD('HDD04', 2)
+# HDD1 = HDD('HDD01', 2)
+# HDD2 = HDD('HDD02', 2)
+# # HDD3 = HDD('HDD03', 2)
+# # HDD4 = HDD('HDD04', 2)
 
-hddList.append(HDD1)
-hddList.append(HDD2)
+# hddList.append(HDD1)
+# hddList.append(HDD2)
 
 
-# hddList.append(HDD3)
-# hddList.append(HDD4)
+# # hddList.append(HDD3)
+# # hddList.append(HDD4)
 
 
 
 R0 = RAID('RAID0', 0)
 R1 = RAID('RAID1', 1)
 R5 = RAID('RAID5', 5)
-R6 = RAID('RAID6', 6)
+# R6 = RAID('RAID6', 6)
 
 H1 = HDD('HDD1', 2)
 H2 = HDD('HDD2', 2)
@@ -45,10 +45,10 @@ H10 = HDD('HDD10', 1)
 H11 = HDD('HDD11', 2)
 H12 = HDD('HDD12', 1)
 
-H13 = HDD('HDD13', 2)
-H14 = HDD('HDD14', 2)
-H15 = HDD('HDD15', 2)
-H16 = HDD('HDD16', 2)
+# H13 = HDD('HDD13', 2)
+# H14 = HDD('HDD14', 2)
+# H15 = HDD('HDD15', 2)
+# H16 = HDD('HDD16', 2)
 
 R0.addHDD(H1)
 R0.addHDD(H2)
@@ -65,10 +65,10 @@ R5.addHDD(H10)
 R5.addHDD(H11)
 R5.addHDD(H12)
 
-R6.addHDD(H13)
-R6.addHDD(H14)
-R6.addHDD(H15)
-R6.addHDD(H16)
+# R6.addHDD(H13)
+# R6.addHDD(H14)
+# R6.addHDD(H15)
+# R6.addHDD(H16)
 
 
 
@@ -82,13 +82,13 @@ RAID_LIST.append(R0)
 RAID_LIST.append(R1)
 RAID_LIST.append(R5)
 # RAID_LIST.append(R6)
-for i in R0.getRAIDLS():
-    print(f'NAME HDD : {i.getName()} CAPACITY : {i.getCapacity()}TB ')
+# for i in R0.getRAIDLS():
+#     print(f'NAME HDD : {i.getName()} CAPACITY : {i.getCapacity()}TB ')
 
-if isinstance(R0.getSUMcapacity(), int):
-    print(f'{R0.getSUMcapacity()}TB')
-else:
-    print(f'{R0.getSUMcapacity()}')
+# if isinstance(R0.getSUMcapacity(), int):
+#     print(f'{R0.getSUMcapacity()}TB')
+# else:
+#     print(f'{R0.getSUMcapacity()}')
 
 
 def on_raid_listbox_click(event):
@@ -152,7 +152,7 @@ def show_right_info():
     for i, raid in enumerate(RAID_LIST):
         capacity = raid.getSUMcapacity()
         # Create labels for RAID name and total capacity
-        text_info = tk.Label(RIGTH_FARME, text=f'{raid.name}',bg='#9290C3',fg="white",font="bold")
+        text_info = tk.Label(RIGTH_FARME, text=f'{raid.name}   LEVEL : {raid.getLevel()}',bg='#9290C3',fg="white",font="bold")
         text_info.grid(row=row_count, column=col_count, padx=5)
 
         capacity_label = tk.Label(RIGTH_FARME, text=f'Total Capacity: {capacity}TB',bg='#5F5D9C',fg="white")
@@ -294,6 +294,7 @@ def on_add_raid_click():
                 status_label.config(
                     text=f"New RAID created: {new_raid.getName()} with RAID level {new_raid.getLevel()}",
                     fg="green")
+                HDD_Listbox.delete(0,tk.END)
                 popup_window.destroy()
 
                 for widgets in RIGTH_FARME.winfo_children():
